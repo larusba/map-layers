@@ -16,6 +16,7 @@ interface LayerConfig {
     params?: { [key: string]: any };
     serverType?: ServerType;
     visible: boolean;
+    id: string;
 }
 
 const MapComponent = () => {
@@ -27,11 +28,13 @@ const MapComponent = () => {
             type: 'ImageArcGISRest',
             url: 'https://sampleserver6.arcgisonline.com/ArcGIS/rest/services/Earthquakes_Since1970/MapServer',
             visible: false,
+            id:'1',
         },
         {
             type: 'ImageArcGISRest',
             url: 'https://sampleserver6.arcgisonline.com/ArcGIS/rest/services/USA/MapServer',
             visible: false,
+            id:'2',
         },
         {
             type: 'TileWMS',
@@ -39,11 +42,13 @@ const MapComponent = () => {
             params: { 'LAYERS': 'usa:states', 'TILED': true },
             serverType: 'geoserver',
             visible: false,
+            id:'3',
         },
         {
             type: 'ImageArcGISRest',
             url: 'https://sampleserver6.arcgisonline.com/ArcGIS/rest/services/WorldTimeZones/MapServer',
             visible: false,
+            id:'4',
         },
     ];
 
@@ -57,7 +62,7 @@ const MapComponent = () => {
     const createLayer = (config: LayerConfig, index: number): BaseLayer | null => {
         let zIndex = index + 1;
 
-        if (config.url === 'https://sampleserver6.arcgisonline.com/ArcGIS/rest/services/WorldTimeZones/MapServer') {
+        if (config.url === '4') {
             zIndex = 0;
         }
 
